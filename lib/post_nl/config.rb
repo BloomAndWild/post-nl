@@ -2,6 +2,9 @@
 
 module PostNL
   class Config
-    attr_accessor :base_url, :username, :password, :logger
+    attr_accessor \
+      :base_url,
+      :api_key,
+      :logger
   end
 end

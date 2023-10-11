@@ -17,11 +17,8 @@ VCR.configure do |c|
   c.default_cassette_options                = { match_requests_on: [:uri] }
   # Filtering Basic auth credentials from VCR interaction.
   # TODO: Update this to match the authentication method for the carrier.
-  c.filter_sensitive_data("<BASIC_AUTH_CREDENTIALS>") do |interaction|
-    auths = interaction.request.headers["Authorization"].first
-    if (match = auths.match /^Basic\s+([^,\s]+)/)
-      match.captures.first
-    end
+  c.filter_sensitive_data("<API_KEY>") do |interaction|
+    interaction.request.headers["Apikey"].first
   end
 end
 
