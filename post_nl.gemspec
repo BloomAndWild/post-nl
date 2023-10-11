@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative "lib/carrier_name/version"
+require_relative "lib/post_nl/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "carrier_name"
-  spec.version       = CarrierName::VERSION
-  spec.authors       = ["{{ author_name }}"]
-  spec.email         = ["{{ author_email }}"]
+  spec.name          = "post_nl"
+  spec.version       = PostNL::VERSION
+  spec.authors       = ["Adam Dullenty"]
+  spec.email         = ["adamdullenty@bloomandwild.com"]
 
-  spec.summary       = "{{ summary }}"
-  spec.homepage      = "https://github.com/BloomAndWild/carrier-integration-template"
+  spec.summary       = "A carrier integration gem for the PostNL shipping API"
+  spec.homepage      = "https://github.com/BloomAndWild/post-nl"
   spec.license       = "Proprietary"
 
   spec.required_ruby_version = ">= 3.1.2"

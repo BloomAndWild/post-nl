@@ -1,38 +1,39 @@
-# Carrier Integration Template
+# Post NL
 
-We produce various carrier integration gems. This is a template for a JSON API based implementation for quick setup.
+Ruby wrapper for Post NL's Rest API
 
-## Examples of previous integrations
+Post NL API documentation: https://developer.postnl.nl/api-overview/send-and-track/shipping-webservice/
 
-1. [DHL Express](https://github.com/BloomAndWild/dhl_express)
-1. [Sendcloud](https://github.com/BloomAndWild/sendcloud)
+## Installation
 
-# Usage
+Add this line to your application's Gemfile:
 
-1. Click on `Use this template` on Github
-1. Run `bin/setup` locally
-1. Enter the request details
+```ruby
+gem "post_nl", branch: "main", github: "BloomAndWild/post_nl"
+```
 
-# What this template contains
+And then execute:
 
-## Requests using Faraday
+    $ bundle
 
-There is a base operation class setup dealing with the connection to the endpoint using Faraday. This allows for easy addition of new actions with child classes built off of this.
+Or install it yourself as:
 
-## Auth
+    $ gem install post_nl
 
-This is setup to use Basic Auth using a `username` and `password`.
+## Running specs
 
-## Error Handling
+To run the specs, add your development credentials to your dev env:
 
-An `Error` module exists with a simple `ResponseError` setup for easy extension.
+```
+Add credentials here
+```
 
-## Tests
+And run the specs via:
 
-Specs are setup to use `VCR` and `Webmock`, there are a few basic tests already setup to allow easy addition of further specs.
+```
+bundle exec rspec
+```
 
-## Rubocop
+## Contributing
 
-Rubocop is used for for static code analysis with the config available within `.ruby-style.yml`
-
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/BloomAndWild/post-nl.

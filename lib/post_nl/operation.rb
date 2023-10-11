@@ -1,4 +1,4 @@
-module CarrierName
+module PostNL
   class Operation
     include Errors
 
@@ -20,7 +20,7 @@ module CarrierName
     protected
 
     def http_client
-      CarrierName::HttpClient.instance
+      PostNL::HttpClient.instance
     end
 
     def http_method

@@ -8,7 +8,7 @@ require "faraday"
 #     basic auth
 #   * Handles exceptions from the underlying HTTP library and re-raises our
 #     custom set of exceptions
-module CarrierName
+module PostNL
   class HttpClient
     include Singleton
 

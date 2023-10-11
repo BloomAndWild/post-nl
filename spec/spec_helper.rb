@@ -3,7 +3,7 @@ require "dotenv"
 require "vcr"
 
 require "bundler/setup"
-require "carrier_name"
+require "post_nl"
 require_relative "support/helpers/client_helper"
 
 Dotenv.load

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CarrierName
+module PostNL
   module Errors
     class NetworkError < StandardError; end
 

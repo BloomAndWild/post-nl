@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe CarrierName::Operation do
+RSpec.describe PostNL::Operation do
   subject { dummy_class.new }
 
   # Specify valid staging config via ENV vars to record VCR cassettes
@@ -33,7 +33,7 @@ RSpec.describe CarrierName::Operation do
 
   describe ".execute" do
     it "fails", vcr_cassette: "broken_request" do
-      expect { subject.execute }.to raise_error(CarrierName::Errors::ClientError)
+      expect { subject.execute }.to raise_error(PostNL::Errors::ClientError)
     end
   end
 end

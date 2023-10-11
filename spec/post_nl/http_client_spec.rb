@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe CarrierName::HttpClient do
+RSpec.describe PostNL::HttpClient do
   # Specify valid staging config via ENV vars to record VCR cassettes
   let(:base_url) { ENV["BASE_URL"] || "https://example.com" }
   let(:username) { ENV["USERNAME"] || "dummy_username" }
@@ -21,7 +21,7 @@ RSpec.describe CarrierName::HttpClient do
     it "raises a NetworkError when a network error occurs" do
       allow_any_instance_of(Faraday::Connection).to receive(:run_request).and_raise(Faraday::ConnectionFailed)
 
-      expect { described_class.instance.request(http_method: :get, path: "/") }.to raise_error(CarrierName::Errors::NetworkError)
+      expect { described_class.instance.request(http_method: :get, path: "/") }.to raise_error(PostNL::Errors::NetworkError)
     end
   end
 end
