@@ -1,0 +1,92 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+include FileUtils
+
+# path to application root.
+APP_ROOT = File.expand_path('..', __dir__)
+
+print "Author name: "
+@author = $stdin.gets.chomp
+
+print "Author email: "
+@email = $stdin.gets.chomp
+
+print "Carrier name (snakecase): "
+@carrier_name = $stdin.gets.chomp
+
+print "Gem Summary: "
+@summary = $stdin.gets.chomp
+
+print "Github Repo Url: "
+@repo_url = $stdin.gets.chomp
+
+def carrier_name_camel_case
+  @carrier_name.split(/_/).map(&:capitalize).join
+end
+
+def carrier_title
+  @carrier_name.split(/_/).map(&:capitalize).join(" ")
+end
+
+def set_module_name
+  Dir.glob('**/**/*.rb').each do |f|
+    text = File.read(f)
+    File.write(f, text.gsub(/CarrierName/, carrier_name_camel_case))
+  end
+end
+
+def set_carrier_name
+  Dir.glob('**/**/*.rb').each do |f|
+    text = File.read(f)
+    File.write(f, text.gsub(/carrier_name/, @carrier_name))
+  end
+end
+
+def default_github_url
+  "https://github.com/BloomAndWild/carrier-integration-template"
+end
+
+def gemspec_file_name
+  "#{@carrier_name}.gemspec"
+end
+
+def gemspec
+  File.read(gemspec_file_name)
+end
+
+def readme_file
+  File.read("README.md")
+end
+
+def setup_gemspec
+  File.write(gemspec_file_name, gemspec.gsub(/{{ author_name }}/, @author))
+  File.write(gemspec_file_name, gemspec.gsub(/{{ author_email }}/, @email))
+  File.write(gemspec_file_name, gemspec.gsub(/carrier_name/, "#{@carrier_name}"))
+  File.write(gemspec_file_name, gemspec.gsub(/CarrierName/, carrier_name_camel_case))
+  File.write(gemspec_file_name, gemspec.gsub(/#{default_github_url}/, @repo_url))
+  File.write(gemspec_file_name, gemspec.gsub(/{{ summary }}/, @summary))
+end
+
+def set_readme
+  File.write("README.md", readme_file.gsub(/{{ carrier_title }}/, carrier_title))
+  File.write("README.md", readme_file.gsub(/{{ carrier_name }}/, @carrier_name))
+  File.write("README.md", readme_file.gsub(/{{ repo_url }}/, @repo_url))
+end
+
+chdir APP_ROOT do
+  FileUtils.mv "lib/carrier_name", "lib/#{@carrier_name}"
+  FileUtils.mv "lib/carrier_name.rb", "lib/#{@carrier_name}.rb"
+  FileUtils.mv "carrier_name.gemspec", "#{@carrier_name}.gemspec"
+  FileUtils.mv "spec/carrier_name", "spec/#{@carrier_name}"
+  FileUtils.mv "spec/carrier_name_spec.rb", "spec/#{@carrier_name}_spec.rb"
+  FileUtils.mv "README.example", "README.md"
+
+  console_file = File.read("bin/console")
+  File.write("bin/console", console_file.gsub(/carrier_name/, @carrier_name))
+
+  set_module_name
+  set_carrier_name
+  setup_gemspec
+  set_readme
+end
