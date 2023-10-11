@@ -25,7 +25,7 @@ Or install it yourself as:
 To run the specs, add your development credentials to your dev env:
 
 ```
-Add credentials here
+API_KEY=<api_key_here>
 ```
 
 And run the specs via:
