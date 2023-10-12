@@ -1,0 +1,53 @@
+{
+  "Customer": {
+    "Address": {
+      "AddressType": "02",
+      "City": "Den Haag",
+      "CompanyName": "Sender company",
+      "Countrycode": "NL",
+      "HouseNr": "3",
+      "Street": "Waldorpstraat",
+      "Zipcode": "2521CA"
+    },
+    "CollectionLocation": "100548",
+    "CustomerCode": "DOHA",
+    "CustomerNumber": "10423450",
+    "Email": "sender@email.com"
+  },
+  "Message": {
+    "MessageID": "1",
+    "MessageTimeStamp": "2020-01-01 00:00:00.000Z",
+    "Printertype": "GraphicFile|PDF"
+  },
+  "Shipments": [
+    {
+      "Addresses": [
+        {
+          "AddressType": "01",
+          "City": "Dummyville",
+          "Countrycode": "NL",
+          "FirstName": "John",
+          "CompanyName": "Receiver company",
+          "HouseNr": "74",
+          "HouseNrExt": "A",
+          "Name": "Smith",
+          "Street": "Dummy Street",
+          "Zipcode": "3571ZZ"
+        }
+      ],
+      "Contacts": [
+        {
+          "ContactType": "01",
+          "Email": "receiver@email.com",
+          "SMSNr": "+31612345678"
+        }
+      ],
+      "Dimension": {
+        "Weight": "4300"
+      },
+      "ProductCodeDelivery": "3085",
+      "Reference": "cust order ref 12345",
+      "Remark": "Fragile"
+    }
+  ]
+}

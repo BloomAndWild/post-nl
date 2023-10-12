@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-sandbox.postnl.nl/shipment/v2_2/label?confirm=true
+    body:
+      encoding: UTF-8
+      string: '{"broken":"json"}'
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+      Apikey:
+      - "<API_KEY>"
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '234'
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Gravitee-Transaction-Id:
+      - 6fd91146-49de-40a3-9911-4649de30a3c2
+      X-Gravitee-Request-Id:
+      - 6fd91146-49de-40a3-9911-4649de30a3c2
+      Expires:
+      - Thu, 12 Oct 2023 13:25:24 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Thu, 12 Oct 2023 13:25:24 GMT
+      Connection:
+      - close
+      Strict-Transport-Security:
+      - max-age=86400
+    body:
+      encoding: UTF-8
+      string: '{"Errors":[{"Code":24,"Description":"The user is not authorized for
+        this operation based on the provided CustomerCode."},{"Code":24,"Description":"The
+        user is not authorized for this operation based on the provided CustomerNumber."}]}'
+  recorded_at: Thu, 12 Oct 2023 13:25:24 GMT
+recorded_with: VCR 6.1.0

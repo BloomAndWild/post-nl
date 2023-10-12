@@ -10,5 +10,7 @@ require "post_nl/http_client"
 require "post_nl/operation"
 require "post_nl/version"
 
+require "post_nl/operations/create_shipment"
+
 module PostNL
 end

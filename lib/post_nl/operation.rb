@@ -2,10 +2,11 @@ module PostNL
   class Operation
     include Errors
 
-    attr_reader :response, :options
+    attr_reader :response, :options, :http_client
 
-    def initialize(**options)
+    def initialize(http_client: default_http_client, **options)
       @options = options
+      @http_client = http_client
     end
 
     def execute
@@ -19,7 +20,7 @@ module PostNL
 
     protected
 
-    def http_client
+    def default_http_client
       PostNL::HttpClient.instance
     end
 
