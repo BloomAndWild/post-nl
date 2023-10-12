@@ -3,9 +3,6 @@
 module PostNL
   module Operations
     class CreateShipment < Operation
-      # TODO: Handle setting optional `?confirm=true` query param
-      # E.g. via optional flag in the provided options hash
-
       BASE_ENDPOINT = "/shipment/v2_2/label"
 
       def initialize(**options)
