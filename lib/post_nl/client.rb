@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CarrierName
+module PostNL
   class Client
     class << self
       attr_reader :config

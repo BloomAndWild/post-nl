@@ -2,20 +2,18 @@
 
 require "spec_helper"
 
-RSpec.describe CarrierName::Operation do
+RSpec.describe PostNL::Operation do
   subject { dummy_class.new }
 
   # Specify valid staging config via ENV vars to record VCR cassettes
   let(:base_url) { ENV["BASE_URL"] || "https://example.com" }
-  let(:username) { ENV["USERNAME"] || "dummy_username" }
-  let(:password) { ENV["PASSWORD"] || "dummy_password" }
+  let(:api_key) { ENV["API_KEY"] || "dummy_api_key" }
 
   # Configure the client with the required credentials
   before do
     configure_client(
       base_url: base_url,
-      username: username,
-      password: password
+      api_key: api_key
     )
   end
 
@@ -33,7 +31,7 @@ RSpec.describe CarrierName::Operation do
 
   describe ".execute" do
     it "fails", vcr_cassette: "broken_request" do
-      expect { subject.execute }.to raise_error(CarrierName::Errors::ClientError)
+      expect { subject.execute }.to raise_error(PostNL::Errors::ClientError)
     end
   end
 end

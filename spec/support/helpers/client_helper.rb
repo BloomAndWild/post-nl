@@ -2,11 +2,10 @@
 
 require "logger"
 
-def configure_client(base_url: nil, username: nil, password: nil)
-  CarrierName::Client.configure do |config|
+def configure_client(base_url: nil, api_key: nil)
+  PostNL::Client.configure do |config|
     config.base_url = base_url || ENV.fetch("BASE_URL")
-    config.username = username || ENV.fetch("USERNAME", "")
-    config.password = password || ENV.fetch("PASSWORD", "")
+    config.api_key = api_key || ENV.fetch("API_KEY", "")
 
     config.logger = Logger.new(STDERR)
     config.logger.level = :debug

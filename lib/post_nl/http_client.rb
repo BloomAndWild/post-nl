@@ -8,30 +8,20 @@ require "faraday"
 #     basic auth
 #   * Handles exceptions from the underlying HTTP library and re-raises our
 #     custom set of exceptions
-module CarrierName
+module PostNL
   class HttpClient
     include Singleton
-
-    DEFAULT_HEADERS = {
-      content_type: "application/json"
-    }.freeze
 
     def connection
       @connection ||= Faraday.new do |conn|
         conn.adapter Faraday.default_adapter
         conn.response :raise_error # raise exceptions on 4xx, 5xx responses
-        conn.headers = DEFAULT_HEADERS
       end
     end
 
     # General purpose request method for general API requests
     # Returns a Faraday::Response object
-    def request(http_method:, path:, payload: nil, token: auth_token)
-      headers = {
-        "Authorization" => "Basic #{token}",
-        "Content-Type" => "application/json"
-      }
-
+    def request(http_method:, path:, payload: nil)
       connection.run_request(http_method, base_url + path, payload, headers)
     rescue Faraday::ConnectionFailed, Faraday::SSLError, Faraday::TimeoutError => e
       raise Errors::NetworkError.new("Network error occurred: #{e.message}")
@@ -43,21 +33,19 @@ module CarrierName
 
     private
 
-    # Generate bearer token from client ID and secret
-    def auth_token
-      Base64.strict_encode64("#{username}:#{password}")
+    def headers
+      {
+        "apikey" => api_key,
+        "Content-Type" => "application/json"
+      }
     end
 
     def config
       Client.config
     end
 
-    def username
-      config.username
-    end
-
-    def password
-      config.password
+    def api_key
+      config.api_key
     end
 
     def base_url

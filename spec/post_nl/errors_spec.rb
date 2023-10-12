@@ -2,14 +2,14 @@
 
 require "spec_helper"
 
-RSpec.describe CarrierName::Errors do
-  describe CarrierName::Errors::NetworkError do
+RSpec.describe PostNL::Errors do
+  describe PostNL::Errors::NetworkError do
     it "inherits from StandardError" do
       expect(described_class).to be < StandardError
     end
   end
 
-  describe CarrierName::Errors::ServerError do
+  describe PostNL::Errors::ServerError do
     it "builds a custom message based on status and body" do
       error = described_class.new(500, "Internal Server Error")
 
@@ -17,7 +17,7 @@ RSpec.describe CarrierName::Errors do
     end
   end
 
-  describe CarrierName::Errors::ClientError do
+  describe PostNL::Errors::ClientError do
     it "builds a custom message based on status and body" do
       error = described_class.new(400, "Bad Request")
 
